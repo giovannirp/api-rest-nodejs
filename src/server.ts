@@ -9,12 +9,9 @@ const app = fastify()
 // http://localhost:3333/hello
 
 app.get('/hello', async () => {
-  const transaction = await knex('transactions').insert({
-    id: crypto.randomUUID(),
-    title: 'Transção de teste',
-    amount: 1000,
-  })
-
+  const transaction = await knex('transactions')
+    .where('amount', 1000)
+    .select('*')
   return transaction
 })
 
