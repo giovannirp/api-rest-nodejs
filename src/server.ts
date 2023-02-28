@@ -1,6 +1,6 @@
 import fastify from 'fastify'
-import crypto from 'node:crypto'
-import { knex } from './database'
+import cookie from '@fastify/cookie'
+
 import { env } from './env'
 import { transactionRoutes } from './routes/transactions'
 
@@ -10,6 +10,7 @@ const app = fastify()
 
 // http://localhost:3333/hello
 
+app.register(cookie)
 app.register(transactionRoutes, {
   prefix: 'transactions',
 })
